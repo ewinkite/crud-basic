@@ -1,7 +1,13 @@
-import MarkDown from "./MarkDown";
+// import InfoInput from "./InfoInput";
+// import MarkDown from "./MarkDown";
 
-const Content = () => {
-  return <MarkDown />;
-};
+// const Content = () => {
+//   return (
+//     <>
+//       <InfoInput />
+//       <MarkDown />
+//     </>
+//   );
+// };
 
-export default Content;
+// export default Content;

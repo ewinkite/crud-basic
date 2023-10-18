@@ -1,6 +1,6 @@
-import { css } from "@emotion/react";
+// import { css } from "@emotion/react";
 
-export const markArea = css`
-  width: auto;
-  margin-top: 1rem;
-`;
+// export const markArea = css`
+//   width: auto;
+//   margin-top: 1rem;
+// `;

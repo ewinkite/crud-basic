@@ -8,3 +8,15 @@ export const Container = css`
   padding: 1.56rem;
   border-radius: 0.5rem;
 `;
+
+export const input = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0.8rem;
+`;
+
+export const markArea = css`
+  width: auto;
+  margin-top: 1rem;
+`;
