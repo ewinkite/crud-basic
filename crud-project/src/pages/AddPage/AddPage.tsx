@@ -42,7 +42,6 @@ const AddPage = () => {
 
   //form submit시 firebase DB내 등록되는 로직
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("성공!");
     e.preventDefault();
 
     //firebase storage내 mainImg 등록되는 로직
@@ -50,7 +49,7 @@ const AddPage = () => {
       const storage = getStorage();
       const storageRef = ref(storage, mainImg[0].name);
       const uploadTask = uploadBytesResumable(storageRef, mainImg[0]);
-      getDownloadURL(uploadTask.snapshot.ref).then((mainImgUrl) => {
+      await getDownloadURL(uploadTask.snapshot.ref).then((mainImgUrl) => {
         //firebase DB내 등록되는 로직
         console.log(mainImgUrl);
         setDoc(doc(db, "posts", title), {
@@ -58,10 +57,12 @@ const AddPage = () => {
           workTerm: workTerm,
           tag: tag,
           mainImg: mainImgUrl,
-          value: value
+          value: value,
+          update: Date()
         });
       });
     }
+    navigate("/list");
   };
 
   return (

@@ -8,10 +8,8 @@ import { globalStyle } from "./styles/globalStyle";
 import { Global } from "@emotion/react";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <div>
-      <Global styles={globalStyle} />
-    </div>
+  <div>
+    <Global styles={globalStyle} />
     <App />
-  </React.StrictMode>
+  </div>
 );

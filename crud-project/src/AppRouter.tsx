@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home, DetailPage, ListPage, AddPage } from "./pages/pageIndex";
 import Header from "./components/common/Header";
+import { props } from "./App";
 
-const AppRouter = () => {
+const AppRouter = ({ items }: props) => {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="/add" element={<AddPage />} />
-        <Route path="/list" element={<ListPage />} />
+        <Route path="/list" element={<ListPage items={items} />} />
       </Routes>
     </BrowserRouter>
   );

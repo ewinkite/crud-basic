@@ -1,9 +1,36 @@
-import React, { Component } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppRouter from "./AppRouter";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase";
+import { useState, useEffect } from "react";
+
+export interface props {
+  items: {
+    id: string;
+    mainImg: string;
+    tag: string;
+    title: string;
+    workTerm: string;
+    value: string;
+  }[];
+}
 
 function App() {
-  return <AppRouter />;
+  const [items, setItems] = useState<any>([]);
+
+  const itemObj = useEffect(() => {
+    async function getItems() {
+      const querySnapshot = await getDocs(collection(db, "posts"));
+      const itemList = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      setItems(itemList);
+    }
+    getItems();
+  }, []);
+  console.log(items);
+
+  return <AppRouter items={items} />;
 }
 
 export default App;
