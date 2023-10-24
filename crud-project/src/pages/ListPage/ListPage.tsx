@@ -25,6 +25,7 @@ const ListPage = ({ items }: props) => {
         <li id="listItems" css={style.listItems}>
           {items.map((item) => (
             <Item
+              key={item.id}
               id={item.id}
               mainImg={item.mainImg}
               tag={item.tag}

@@ -27,8 +27,8 @@ function App() {
       setItems(itemList);
     }
     getItems();
+    console.log("라라라");
   }, []);
-  console.log(items);
 
   return <AppRouter items={items} />;
 }

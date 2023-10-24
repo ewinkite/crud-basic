@@ -10,11 +10,13 @@ interface props {
   tag: string;
 }
 
-function Item({ mainImg, value, title, workTerm, tag }: props) {
+function Item({ id, mainImg, value, title, workTerm, tag }: props) {
+  const navigate = useNavigate();
+
   function handleItemDetail() {
-    const navigate = useNavigate();
-    navigate("/detail/{id}");
+    navigate("/detail/" + id);
   }
+
   return (
     <ul id="listItem" css={style.itemContainer} onClick={handleItemDetail}>
       <img css={style.itemImage} src={mainImg} />

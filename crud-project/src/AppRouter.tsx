@@ -1,5 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, DetailPage, ListPage, AddPage } from "./pages/pageIndex";
+import {
+  Home,
+  DetailPage,
+  EditPage,
+  ListPage,
+  AddPage
+} from "./pages/pageIndex";
 import Header from "./components/common/Header";
 import { props } from "./App";
 
@@ -10,6 +16,7 @@ const AppRouter = ({ items }: props) => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/edit/:id" element={<EditPage />} />
         <Route path="/add" element={<AddPage />} />
         <Route path="/list" element={<ListPage items={items} />} />
       </Routes>

@@ -5,6 +5,9 @@ export const listItems = css`
   display: flex;
   flex-wrap: wrap;
   margin: 0 0.8rem 0.8rem 0.8rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const filterContainer = css`

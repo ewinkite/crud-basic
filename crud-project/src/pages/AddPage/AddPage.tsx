@@ -2,7 +2,7 @@ import * as style from "./AddPage.style";
 import DefaultBtn from "../../components/common/DefaultBtn";
 import React, { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import {
   getDownloadURL,
@@ -48,15 +48,17 @@ const AddPage = () => {
     if (mainImg !== null && mainImg !== undefined) {
       const storage = getStorage();
       const storageRef = ref(storage, mainImg[0].name);
+      const mainImgTitle = mainImg[0].name;
       const uploadTask = uploadBytesResumable(storageRef, mainImg[0]);
       await getDownloadURL(uploadTask.snapshot.ref).then((mainImgUrl) => {
         //firebase DB내 등록되는 로직
         console.log(mainImgUrl);
-        setDoc(doc(db, "posts", title), {
+        addDoc(collection(db, "posts"), {
           title: title,
           workTerm: workTerm,
           tag: tag,
           mainImg: mainImgUrl,
+          mainImgTitle: mainImgTitle,
           value: value,
           update: Date()
         });

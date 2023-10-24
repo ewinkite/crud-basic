@@ -11,7 +11,7 @@ export const Container = css`
   border-radius: 0.5rem;
   align-items: center;
   font-weight: bold;
-  padding: 1rem;
+  /* padding: 1.56rem; */
 `;
 
 export const ButtonWrap = css`
