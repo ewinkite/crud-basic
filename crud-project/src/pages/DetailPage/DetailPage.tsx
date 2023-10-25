@@ -24,7 +24,6 @@ function DetailPage() {
     };
     getContent();
   }, []);
-  console.log(item);
 
   function handleEdit() {
     navigate("/edit/" + id);

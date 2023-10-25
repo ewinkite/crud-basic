@@ -16,6 +16,7 @@ export const globalStyle = css`
   }
   body {
     background-color: #f0f2f7;
-    padding: 3.75rem 26em 3.75rem 26rem;
+    padding: 3.75rem 0rem 3.75rem 0rem;
+    display: block;
   }
 `;

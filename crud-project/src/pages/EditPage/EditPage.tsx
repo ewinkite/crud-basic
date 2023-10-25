@@ -38,10 +38,13 @@ const EditPage = () => {
   const itemValue = item.value;
 
   //에디터 hook
-  const [value, setValue] = useState<string | undefined>(itemValue);
+  const [value, setValue] = useState<string | undefined>();
   useEffect(() => {
-    setValue(itemValue);
-  }, []);
+    setValue(item.value);
+    setTitle(item.title);
+    setTag(item.tag);
+    setWorkTerm(item.workTerm);
+  }, [itemValue]);
 
   // 수정 사항 저장하는 로직
   //input값 변경됨에 따른 set 변경
@@ -61,15 +64,6 @@ const EditPage = () => {
     setMainImg(e.target.files);
   }
 
-  function onChangeValue(
-    value?: string | undefined,
-    e?: ChangeEvent<HTMLTextAreaElement> | undefined,
-    state?: ContextStore | undefined
-  ): void {
-    setValue(e?.target.value);
-    console.log(value);
-  }
-
   //form submit시 firebase DB내 업데이트되는 로직
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -83,7 +77,6 @@ const EditPage = () => {
       await getDownloadURL(uploadTask.snapshot.ref).then((mainImgUrl) => {
         //firebase DB내 form 내용 등록되는 로직
         if (id) {
-          console.log(id);
           setDoc(doc(db, "posts", id), {
             title: title,
             workTerm: workTerm,
@@ -96,6 +89,16 @@ const EditPage = () => {
         }
       });
     }
+    if (id) {
+      updateDoc(doc(db, "posts", id), {
+        title: title,
+        workTerm: workTerm,
+        tag: tag,
+        value: value,
+        update: Date()
+      });
+    }
+
     navigate("/list");
   };
 
@@ -108,7 +111,7 @@ const EditPage = () => {
             <input
               id="title"
               size={50}
-              defaultValue={item.title}
+              value={title}
               onChange={onChangeTitle}
             />
           </label>
@@ -118,20 +121,14 @@ const EditPage = () => {
             <input
               id="workTerm"
               size={30}
-              defaultValue={item.workTerm}
+              value={workTerm}
               onChange={onChangeWorkTerm}
             ></input>
           </label>
         </div>
         <div id="inputBottom" css={style.input}>
           <label htmlFor="tag">
-            태그{" "}
-            <input
-              id="tag"
-              size={35}
-              defaultValue={item.tag}
-              onChange={onChangeTag}
-            />
+            태그 <input id="tag" size={35} onChange={onChangeTag} value={tag} />
           </label>
           <label htmlFor="mainImg">대표사진</label>
           <input
@@ -144,7 +141,7 @@ const EditPage = () => {
           <DefaultBtn text={"저장하기"} type="submit"></DefaultBtn>
         </div>
         <div className="markArea" css={style.markArea}>
-          <MDEditor height={560} value={value} onChange={onChangeValue} />
+          <MDEditor key={id} value={value} height={560} onChange={setValue} />
         </div>
       </form>
     </div>

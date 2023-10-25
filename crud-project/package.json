@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@toast-ui/editor": "^3.2.2",
-    "@toast-ui/react-editor": "3.1.8",
     "@uiw/react-md-editor": "^3.24.1",
     "eslint-config-airbnb": "^19.0.4",
     "firebase": "^10.5.0",
@@ -22,9 +20,6 @@
     "react-router-dom": "^6.16.0",
     "redux-devtools-extension": "^2.13.9",
     "uid": "^2.0.2"
-  },
-  "resolutions": {
-    "@toast-ui/editor": "3.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

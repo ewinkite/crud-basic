@@ -18,7 +18,7 @@ const ListPage = ({ items }: props) => {
         <div css={style.ListHeaderWrap}>
           <div css={style.listTitle}>
             전체
-            <span>NN</span>
+            <span> {items.length}</span>
           </div>
           <DefaultBtn text={"글쓰기"} onClick={handleWriteBtn}></DefaultBtn>
         </div>

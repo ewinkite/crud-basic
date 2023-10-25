@@ -1,5 +1,5 @@
 import AppRouter from "./AppRouter";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "./firebase";
 import { useState, useEffect } from "react";
 
@@ -19,7 +19,9 @@ function App() {
 
   const itemObj = useEffect(() => {
     async function getItems() {
-      const querySnapshot = await getDocs(collection(db, "posts"));
+      const querySnapshot = await getDocs(
+        query(collection(db, "posts"), orderBy("update", "desc"))
+      );
       const itemList = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id
@@ -27,7 +29,6 @@ function App() {
       setItems(itemList);
     }
     getItems();
-    console.log("라라라");
   }, []);
 
   return <AppRouter items={items} />;

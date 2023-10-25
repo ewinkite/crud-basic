@@ -16,6 +16,7 @@ export const filterContainer = css`
   background-color: var(--color-white);
   margin-top: 1.5rem;
   border-radius: 0.5rem;
+  margin: 1.5rem auto;
 `;
 
 export const ListHeaderWrap = css`
@@ -38,7 +39,7 @@ export const ListContainer = css`
   width: 47.25rem;
   height: 44.3125rem;
   background-color: var(--color-white);
-  margin-top: 1.5rem;
+  margin: 1.5rem auto;
   border-radius: 0.5rem;
   overflow: auto;
 `;

@@ -52,7 +52,6 @@ const AddPage = () => {
       const uploadTask = uploadBytesResumable(storageRef, mainImg[0]);
       await getDownloadURL(uploadTask.snapshot.ref).then((mainImgUrl) => {
         //firebase DB내 등록되는 로직
-        console.log(mainImgUrl);
         addDoc(collection(db, "posts"), {
           title: title,
           workTerm: workTerm,
